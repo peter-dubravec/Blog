@@ -72,15 +72,14 @@ exports.post_delete_post = (req, res, next) => {
         }
     }, (err, results) => {
         if (err) {
-            return res.status(400).json(err.message)
+            return res.status(400).json({ error: err.message })
         }
 
-        res.status(200).json(results)
+        return res.status(200).json(results)
     })
 }
 
 exports.post_publish_post = (req, res, next) => {
-    console.log(typeof req.body.isPublished)
     Posts.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true }, (err, post) => {
         if (err) {
             return res.status(200).json(err.message)
@@ -90,9 +89,7 @@ exports.post_publish_post = (req, res, next) => {
     })
 }
 
-const createToken = (_id) => {
-    jwt.sign({ _id: _ })
-}
+
 
 exports.login_post = [
     body("username", "Invalid username").trim().escape().isLength({ min: 1 }),
@@ -100,6 +97,7 @@ exports.login_post = [
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
             res.status(400).json({ errors: errors.array() })
+            return
         }
 
         try {
@@ -109,12 +107,15 @@ exports.login_post = [
             if (isAuthorized) {
                 const token = jwt.sign({ _id: admin._id }, process.env.SECRET_JWT)
                 res.json({ message: "logged in", token })
+                return
             } else {
-                res.json({ message: "Not authorized" })
+                res.status(400).json({ error: "Not Authorised" })
+                return
             }
 
         } catch (error) {
-            res.status(400).json({ error: error.message })
+            res.status(400).json({ error: "Invalid username or password" })
+            return
         }
     }
 ]

@@ -14,7 +14,7 @@ const BlogPost = () => {
             }
         }
         fetchArticle()
-    }, [])
+    }, [id])
 
     return (
         <div>
