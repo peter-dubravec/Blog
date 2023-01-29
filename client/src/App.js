@@ -8,12 +8,18 @@ import BlogPost from './pages/BlogPost';
 import AdminDashboard from './pages/AdminDashboard';
 import Login from "./pages/Login"
 import AdminGetPost from './pages/AdminGetPost';
+import AdminEditPost from './pages/AdminEditPost';
+import AdminEditPost1 from './pages/AdminEditPost1';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import CreatePost from './pages/CreatePost';
 
 function App() {
   const { user } = useAuthContext()
 
   return (
     <div className="App">
+      <Navbar />
       <BrowserRouter>
         <div className="pages">
           <Routes>
@@ -36,11 +42,16 @@ function App() {
             <Route path="/admin/dashboard" element={user ? <AdminDashboard /> : <Navigate to="/login" />}
             />
 
-            <Route path="/admin/dashboard/:id" element={user ? <AdminGetPost /> : <Navigate to="/login" />}/>
-            
+            <Route path="/admin/dashboard/:id" element={user ? <AdminGetPost /> : <Navigate to="/login" />} />
+
+            <Route path="/admin/dashboard/:id/edit" element={user ? <AdminEditPost1 /> : <Navigate to="/login" />} />
+
+            <Route path="/admin/create-post" element={user ? <CreatePost /> : <Navigate to="/login" />} />
+
           </Routes>
         </div>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }

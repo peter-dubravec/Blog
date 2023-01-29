@@ -1,8 +1,7 @@
 const Posts = require("../../models/post")
 const Comments = require("../../models/comment")
-
+const he = require('he');
 const async = require("async")
-const post = require("../../models/post")
 
 
 exports.posts_limit_get = (req, res, next) => {
@@ -41,6 +40,8 @@ exports.post_get = (req, res, next) => {
             err.status = 404;
             return next(err)
         }
+        
+        results.post.text = he.decode(results.post.text)
 
         res.json({ post: results.post, comments: results.comments })
 

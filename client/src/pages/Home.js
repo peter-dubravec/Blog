@@ -22,7 +22,7 @@ const Home = () => {
             <div className="posts">
                 {posts && posts.map((post) => (
                     <div key={post._id} className="blogArticle">
-                        <Link to={`article/${post._id}`}>{post.title}</Link>
+                        <Link to={`/article/${post._id}`}>{post.title}</Link>
                     </div>
                 ))}
             </div>

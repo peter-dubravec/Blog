@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
-import { useLogout } from '../hooks/useLogout'
-import { FaBeer } from 'react-icons/fa';
 import { Link } from "react-router-dom"
 
 const Admin = () => {
     const [posts, setPosts] = useState(null)
+
+    const [isPublished, setIsPublished] = useState({ published: null, unPublished: null })
+
     const [error, setError] = useState(null)
     const { user } = useAuthContext()
-    const { logout } = useLogout()
 
-    const handleLogout = () => {
-        logout()
-    }
+
 
 
     useEffect(() => {
@@ -38,21 +36,35 @@ const Admin = () => {
 
     }, [user])
 
-
-
+    useEffect(() => {
+        if (posts) {
+            setIsPublished({ published: posts.filter(post => post.isPublished), unPublished: posts.filter(post => !post.isPublished) })
+        }
+    }, [posts])
 
 
     return (
-        <div>
-            <div>{posts?.map(post => {
-                return (<div key={post._id}><Link to={`/admin/dashboard/${post._id}`}>{post.title}</Link></div>)
-            })}
-                {error && <div>{error}</div>}
+        <>
+            <Link to="/admin/create-post">Create Post</Link>
+
+            <div className="wrapper--isPublished">
+                <div className="publishedContainer">
+                    <h3>Published articles</h3>
+                    {isPublished.published?.map(post => {
+                        return <div className="published" key={post._id}><Link to={`/admin/dashboard/${post._id}`}>{post.title}</Link></div>
+                    })}
+                </div>
+
+                <div className="unPublishedContainer">
+                    <h3>Not published articles</h3>
+                    {isPublished.unPublished?.map(post => {
+                        return <div className="unPublished" key={post._id}><Link to={`/admin/dashboard/${post._id}`}>{post.title}</Link></div>
+                    })}
+                </div>
             </div>
-            <div>
-                <button onClick={handleLogout}>Logout</button>
-            </div>
-        </div>
+
+
+        </>
     )
 }
 

@@ -12,9 +12,6 @@ const Login = () => {
         await login(username, password)
     }
 
-
-
-
     return (
         <div>
             <form onSubmit={handleForm}>

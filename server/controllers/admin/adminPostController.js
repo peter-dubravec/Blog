@@ -4,7 +4,8 @@ const async = require("async")
 const { body, validationResult } = require('express-validator');
 const bcrypt = require("bcryptjs")
 const Admins = require("../../models/admin")
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const he = require('he');
 
 exports.posts_get = async (req, res, next) => {
     try {
@@ -18,6 +19,7 @@ exports.posts_get = async (req, res, next) => {
 exports.post_create_post = [
     body("title", "Invalid title").trim().escape().isLength({ min: 1 }),
     body("text", "Invalid text").trim().escape().isLength({ min: 1 }),
+    body("img", "Invalid img").trim(),
     body("isPublished").isBoolean(),
     async (req, res, next) => {
         const errors = validationResult(req)
@@ -29,14 +31,16 @@ exports.post_create_post = [
                 errorMessages.push(error.msg)
             })
 
-            res.status(400).json(errorMessages)
+            return res.status(400).json(errorMessages)
         }
 
         try {
             const post = await Posts.create(req.body)
             res.json(post)
+            return
         } catch (error) {
             res.status(400).json(error.message)
+            return
         }
 
     }
@@ -53,13 +57,27 @@ exports.post_get = (req, res, next) => {
                     : req.params.id
             }).exec(cb)
         }
+
     }, (err, results) => {
         if (err) {
             return res.status(400).json(err.message)
         }
-
+        results.posts.text = he.decode(results.posts.text)
         res.status(200).json(results)
     })
+}
+
+exports.post_update_get = (req, res, next) => {
+    Posts.findById(req.params.id, (err, post) => {
+        if (err) {
+            return res.status(400).json({ error: err.message })
+        }
+
+        post.text = he.decode(post.text)
+        console.log(post.text)
+        res.status(200).json(post)
+    }
+    )
 }
 
 exports.post_delete_post = (req, res, next) => {
@@ -82,13 +100,35 @@ exports.post_delete_post = (req, res, next) => {
 exports.post_publish_post = (req, res, next) => {
     Posts.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true }, (err, post) => {
         if (err) {
-            return res.status(200).json(err.message)
+            return res.status(400).json({ error: err.message })
         }
 
         res.json(post)
     })
 }
 
+exports.post_update_post = [
+    body("title", "Invalid title").trim().escape().isLength({ min: 1 }),
+    body("text", "Invalid text").trim().escape().isLength({ min: 1 }),
+    body("img", "Invalid img text").trim().escape(),
+
+    async (req, res, next) => {
+        console.log(req.body)
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            res.status(400).json({ error: "Invalid input" })
+            return
+        }
+        Posts.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true }, (err, post) => {
+            if (err) {
+                return res.status(400).json({ error: err.message })
+            }
+
+            res.status(200).json(post)
+        })
+
+    }
+]
 
 
 exports.login_post = [
@@ -119,3 +159,13 @@ exports.login_post = [
         }
     }
 ]
+
+exports.comment_delete_post = (req, res, next) => {
+    Comments.findByIdAndDelete(req.params.id, (err) => {
+        if (err) {
+            return res.status(400).json({ error: "Can't delete this comment." })
+        }
+
+        return res.status(200).json({ message: "Comment deleted" })
+    })
+}

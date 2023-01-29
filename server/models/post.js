@@ -5,6 +5,7 @@ const Schema = mongoose.Schema
 const PostSchema = new Schema({
     title: { type: String, required: true },
     text: { type: String, required: true },
+    img: { type: String },
     isPublished: { type: Boolean, defualt: true },
 
 }, { timestamps: true })
