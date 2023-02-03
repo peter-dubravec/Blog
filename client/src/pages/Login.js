@@ -13,7 +13,7 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className="login-container">
             <form onSubmit={handleForm}>
                 <label htmlFor="username">Username:</label>
                 <input type="text" name="username" id="username" onChange={(e) => setUsername(e.target.value)} />

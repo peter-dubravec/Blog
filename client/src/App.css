@@ -121,8 +121,8 @@ h1 {
     color: black;
 }
 
+
 .App {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     font-family: 'Poppins'
@@ -146,11 +146,55 @@ h1 {
     position: relative;
 }
 
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #4c4d4d;
+    color: hsla(0, 0%, 98%, .9)
+}
 
+.login-container input {
+    display: block;
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background-color: rgb(35, 42, 49) !important;
+    border: none;
+    color: hsla(0, 0%, 98%, .9);
+    font-size: 1.2em;
+    transition: box-shadow 0.2s ease 0s;
+}
+
+.login-container button {
+    padding: 10px 45px;
+    color: white;
+    background-color: #20c997;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    transition: all 0.1s ease-in-out 0s;
+}
 
 .logout-btn {
     border: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
     padding: 10px 20px;
+    color: white;
+    background-color: #b23b3b;
+    border: none;
+    font-size: 1.2em;
+    transition: all 0.1s ease-in-out 0s;
+}
+
+.logout-btn:hover {
+    background-color: #6b1d1d;
+    cursor: pointer;
 }
 
 .editor-wrapper {
@@ -375,6 +419,12 @@ h1 {
 
 .about-me-middle--left p {
     color: hsla(0, 0%, 100%, .5);
+
+}
+
+.about-me-middle--right p {
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(250, 250, 250, 0.12);
 }
 
 .cv-btn {
@@ -991,6 +1041,7 @@ p.limit-word-count {
 
 
 /* Dashboard */
+/* Admin Section */
 /* ---------------------------- */
 
 .main-dashboard {
@@ -1152,4 +1203,215 @@ p.limit-word-count {
 
 .publish-checkbox:focus {
     box-shadow: 0 0 0px !important;
+}
+
+
+
+/* Media Queries */
+/* ---------------------------- */
+
+.navbar {
+    display: none;
+}
+
+/* Hamburger menu */
+
+.menu-btn {
+    position: absolute;
+    z-index: 3;
+    right: 35px;
+    top: 42px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+
+
+/* Styling the three lines
+    to make it an X */
+.menu-btn.close .btn-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-btn.close .btn-line:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-btn.close .btn-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Adding a transition delay to the
+       4 items in the navigation menu */
+.nav-item:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.nav-item:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.nav-item:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.nav-item:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+.menu-btn .btn-line {
+    width: 28px;
+    height: 3px;
+    margin: 0 0 5px 0;
+    background: black;
+    transition: all 0.5s ease-out;
+    background-color: hsla(0, 0%, 98%, .9)
+}
+
+.hamburger-nav-items {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    width: 100%;
+    height: 0;
+    overflow-y: hidden;
+    z-index: 100;
+    transition: all 0.5s ease;
+}
+
+.hamburger-nav-items.show {
+    height: 280px;
+}
+
+.navbar {
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgb(17, 20, 24);
+    justify-content: space-between;
+    color: hsla(0, 0%, 98%, .9);
+    align-items: center;
+    padding: 0 30px;
+    height: 80px;
+    z-index: 100;
+}
+
+.navbar p {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar .flex-right {
+    display: flex;
+    gap: 20px;
+}
+
+.hamburger-nav-items .separator {
+    height: 2px;
+    background-color: hsla(0, 0%, 100%, .2);
+    margin-left: 15px;
+
+}
+
+.hamburger-nav-items ul li a {
+    color: hsla(0, 0%, 98%, .9);
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 2;
+    transition: all 0.1s ease-in-out 0s;
+    display: block;
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+.hamburger-nav-items ul li a:hover {
+    color: #20c997;
+    cursor: pointer;
+}
+
+.hamburger-nav-items ul li a.active {
+    color: #20c997;
+}
+
+
+@media (max-width: 875px) {
+    .sidePanel {
+        display: none;
+    }
+
+    .content-container {
+        padding: 0 60px;
+    }
+
+    .navbar {
+        display: flex;
+    }
+
+    .home-wrapper {
+        margin-top: 80px;
+        height: calc(100vh - 80px);
+    }
+
+    .aboutMe-container .middle {
+        display: block;
+    }
+
+    .about-me-middle--left p {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .contact-container .contact-flex {
+        display: block;
+    }
+
+    .email-container {
+
+        margin-bottom: 0;
+    }
+
+    .posts-container .posts {
+        margin-bottom: 0;
+    }
+
+    section {
+        padding-bottom: 50px;
+    }
+
+    .portfolio-section {
+        padding-bottom: 0px;
+    }
+
+    .whatido-section {
+        padding-bottom: 50px;
+    }
+
+    .aboutMe-section {
+        padding: 0;
+    }
+
+    .contact-container .contact-flex {
+        display: grid;
+        grid-template-rows: 1/2;
+    }
+
+    .email-container {
+        grid-row: 1/2;
+    }
+
+    .contact-flex--left {
+        text-align: center;
+    }
+
+    .resume-containers {
+        display: block;
+    }
+}
+
+@media (max-height:640px) {
+    .sidePanel {
+        min-height: 640px;
+    }
 }

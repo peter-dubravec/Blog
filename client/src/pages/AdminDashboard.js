@@ -1,15 +1,21 @@
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
+import { useLogout } from '../hooks/useLogout'
 import { Link } from "react-router-dom"
 
 const Admin = () => {
     const [posts, setPosts] = useState(null)
+
+    const { logout } = useLogout()
 
     const [isPublished, setIsPublished] = useState({ published: null, unPublished: null })
 
     const [error, setError] = useState(null)
     const { user } = useAuthContext()
 
+    const handleLogout = () => {
+        logout()
+    }
 
 
 
@@ -45,6 +51,7 @@ const Admin = () => {
 
     return (
         <div className="main-dashboard">
+            <button className="logout-btn" onClick={handleLogout}>Logout</button>
             <Link className="create-post" to="/admin/create-post">Create Post</Link>
 
             <div className="wrapper--isPublished">
@@ -62,8 +69,6 @@ const Admin = () => {
                     })}
                 </div>
             </div>
-
-
         </div>
     )
 }

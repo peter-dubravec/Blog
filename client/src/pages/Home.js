@@ -4,6 +4,7 @@ import BlogPostsSection from "../components/BlogPostsSection"
 import ContactSection from "../components/ContactSection"
 import Footer from "../components/Footer"
 import HomeSection from "../components/HomeSection"
+import Navbar from "../components/Navbar"
 import PortfolioSection from "../components/PortfolioSection"
 import ResumeSection from "../components/ResumeSection"
 import WhatIDoSection from "../components/WhatIDoSection"
@@ -12,6 +13,7 @@ const Home = () => {
 
     return (
         <div className="main-content-wrapper">
+            <Navbar />
             <HomeSection />
             <AboutMeSection />
             <WhatIDoSection />
