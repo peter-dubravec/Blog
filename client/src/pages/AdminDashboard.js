@@ -44,8 +44,8 @@ const Admin = () => {
 
 
     return (
-        <>
-            <Link to="/admin/create-post">Create Post</Link>
+        <div className="main-dashboard">
+            <Link className="create-post" to="/admin/create-post">Create Post</Link>
 
             <div className="wrapper--isPublished">
                 <div className="publishedContainer">
@@ -64,7 +64,7 @@ const Admin = () => {
             </div>
 
 
-        </>
+        </div>
     )
 }
 

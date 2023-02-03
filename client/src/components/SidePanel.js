@@ -67,7 +67,6 @@ const SidePanel = () => {
                                 spy={true}
                                 smooth={true}
                                 duration={300}
-                                offset={-350}
                             >Contact</Link>
 
                         </li>

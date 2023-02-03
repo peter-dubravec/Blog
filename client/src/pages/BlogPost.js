@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import Moment from 'react-moment';
 
 const BlogPost = () => {
     const { id } = useParams()
@@ -7,6 +8,8 @@ const BlogPost = () => {
     const [articles, setArticle] = useState(null)
 
     const [comment, setComment] = useState({ author: "", text: "", })
+
+    const MAX_AUTHOR_LENGTH = 10;
 
     useEffect(() => {
         const fetchArticle = async () => {
@@ -37,32 +40,67 @@ const BlogPost = () => {
         }
     }
 
+    const handleAuthorInput = (e) => {
+        if (comment.author.length <= 30) {
+            setComment({ ...comment, author: e.target.value })
+        }
+
+        if (comment.author.length === 30) {
+            const author = comment.author.slice(0, -1);
+            setComment({ ...comment, author: author })
+        }
+    }
+
+    const handleTextAreaInput = (e) => {
+        if (comment.text.length <= 100) {
+            setComment({ ...comment, text: e.target.value })
+        }
+
+        if (comment.text.length === 100) {
+            const text = comment.text.slice(0, -1);
+            setComment({ ...comment, text: text })
+        }
+    }
+
     return (
         <div className="article-wrapper">
-            <div className="article">
-                <h1>{articles?.post.title}</h1>
-                {articles?.post.img && <img src={articles.post.img} alt="image"></img>}
-                <br />
-                <div dangerouslySetInnerHTML={{ __html: articles?.post.text }} />
+            <div className="content-container article-flex">
+                <div className="article">
+                    <h1>{articles?.post.title}</h1>
+                    {articles?.post.img && <img src={articles.post.img} alt="image"></img>}
+                    <br />
+                    <div dangerouslySetInnerHTML={{ __html: articles?.post.text }} />
 
-            </div>
-            {
-                articles?.comments.map(comment => (
-                    <div key={comment._id} className="article">
+                </div>
 
-                        <p>{comment.author}</p>
-                        <p>{comment.text}</p>
+                <div className="comment-wrapper">
+                    {articles?.comments.map(comment => (
+                        <div key={comment._id} className="comment">
+                            <div className="comment-heading"><p className="comment-author">Author: <span>{comment.author}</span></p>
+                                <p><Moment format="HH:mm DD/MM/YYYY">{comment.createdAt}</Moment></p>
+                            </div>
+                            <div className="separator"></div>
+                            <div className="comment-text">
+                                <p>{comment.text}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+
+                <form className="comment-form" onSubmit={(e) => handleSubmit(e)}>
+                    <div className="form-content">
+                        <h2>Leave Me A Comment!</h2>
+                        <label htmlFor="author">Author</label>
+                        <input type="text" name="author" id="author" value={comment.author} required onChange={(e) => handleAuthorInput(e)} />
+                        <p className="limit-word-count">{30 - comment.author.length} characters left</p>
+                        <label htmlFor="text">Comment</label>
+                        <textarea type="text" name="text" id="text" cols="50" value={comment.text} required onChange={(e) => handleTextAreaInput(e)} />
+                        <p className="limit-word-count">{100 - comment.text.length} characters left</p>
+                        <button>Comment</button>
                     </div>
-                ))
-            }
-
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <label htmlFor="author">Author</label>
-                <input type="text" name="author" id="author" onChange={(e) => setComment({ ...comment, author: e.target.value })} />
-                <label htmlFor="text">Comment</label>
-                <input type="text" name="text" id="text" onChange={(e) => setComment({ ...comment, text: e.target.value })} />
-                <button>Comment</button>
-            </form>
+                </form>
+            </div >
         </div >
     )
 }

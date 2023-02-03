@@ -18,6 +18,7 @@ import SidePanel from './components/SidePanel';
 function App() {
   const { user } = useAuthContext()
 
+
   return (
     <div className="App">
       <div className="content-wrapper">

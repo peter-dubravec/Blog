@@ -6,6 +6,15 @@
     margin: 0;
 }
 
+body {
+    overflow-wrap: break-word;
+}
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
 
 
 /* Reapply the pointer cursor for anchor tags */
@@ -37,6 +46,7 @@ table {
 input,
 textarea {
     -webkit-user-select: auto;
+    all: unset;
 }
 
 /* revert the 'white-space' property for textarea elements on Safari */
@@ -149,26 +159,7 @@ h1 {
 
 }
 
-.wrapper--isPublished {
-    display: flex;
-    justify-content: center;
-    gap: 200px;
-    margin-top: 100px;
-}
 
-.publishedContainer,
-.unPublishedContainer {
-    padding: 50px;
-
-}
-
-.publishedContainer {
-    border: 2px solid green;
-}
-
-.unPublishedContainer {
-    border: 2px solid red
-}
 
 /* .navbar {
     display: flex;
@@ -761,19 +752,29 @@ textarea {
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 5px;
-    background-color: rgb(35, 42, 49);
+    background-color: rgb(35, 42, 49) !important;
     border: none;
     color: hsla(0, 0%, 98%, .9);
     font-size: 1.2em;
-    transition: all 0.5s ease-in 0s;
+    transition: box-shadow 0.2s ease 0s;
 }
+
+.contact-flex input:focus,
+textarea:focus {
+    box-shadow: 0 0 10px steelblue;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+
 
 .email ::placeholder {
     color: hsla(0, 0%, 100%, .5);
     opacity: 1;
     font-size: 14px;
     font-style: italic;
-    /* Firefox */
 }
 
 
@@ -861,3 +862,191 @@ footer {
 
 
 /* ----------------------- */
+
+/*  Styling Blog Post */
+
+.article-wrapper {
+    background-color: #343a40;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.article-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.article-wrapper h1 {
+    margin-bottom: 30px;
+}
+
+.article-wrapper .article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.article-wrapper form input {
+    display: block;
+    background-color: black;
+}
+
+
+.article-wrapper button {
+    padding: 10px 45px;
+    color: white;
+    background-color: #20c997;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    transition: all 0.1s ease-in-out 0s;
+}
+
+.article-wrapper button:hover {
+    cursor: pointer;
+    background-color: #1ca97f;
+}
+
+.article-wrapper input {
+    display: block;
+    width: 95%;
+    padding: 10px;
+
+    border-radius: 5px;
+    background-color: rgb(35, 42, 49) !important;
+    border: none;
+    color: hsla(0, 0%, 98%, .9);
+    font-size: 1.2em;
+    transition: box-shadow 0.2s ease 0s;
+}
+
+.article-wrapper textarea {
+    height: 70px;
+    width: 95%;
+    overflow-wrap: break-word;
+    margin-bottom: 0;
+
+
+}
+
+.article-wrapper input:focus {
+    box-shadow: 0 0 10px steelblue;
+}
+
+.article-wrapper form button {
+    display: block;
+}
+
+.article-wrapper .comment-wrapper {
+    width: 70%;
+}
+
+.comment-wrapper .comment-heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-wrapper .comment {
+    margin-bottom: 20px;
+    background-color: #111418;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.comment-author span {
+    color: #20c997;
+    text-transform: capitalize;
+}
+
+.comment-wrapper .comment .separator {
+    height: 2px;
+    background-color: steelblue !important;
+    margin-bottom: 10px;
+}
+
+.form-content {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+}
+
+.form-content h2 {
+    margin-bottom: 20px;
+}
+
+p.limit-word-count {
+    font-style: italic;
+    transform: translateY(-0%);
+    text-align: end;
+    margin-right: 25px;
+
+}
+
+.comment-form label {
+    font-size: 1.2em;
+}
+
+/* ---------------------------- */
+
+
+/* Dashboard */
+/* ---------------------------- */
+
+.main-dashboard {
+    min-height: 100vh;
+    width: 100%;
+    background-color: rgb(35, 42, 49);
+    color: hsla(0, 0%, 98%, .9)
+}
+
+.main-dashboard a {
+    text-decoration: none;
+    color: hsla(0, 0%, 98%, .8);
+    transition: all 0.2s ease-in;
+    font-size: 1.3em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.main-dashboard .create-post {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-70%);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.main-dashboard h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.main-dashboard a:hover {
+    color: #1ca97f;
+}
+
+.wrapper--isPublished {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    margin-top: 100px;
+}
+
+.publishedContainer,
+.unPublishedContainer {
+    padding: 50px;
+
+}
+
+.publishedContainer {
+    border: 2px solid #20c997;
+    box-shadow: 0 0 10px #20c997;
+}
+
+.unPublishedContainer {
+    border: 2px solid red;
+    box-shadow: 0 0 10px red;
+}
