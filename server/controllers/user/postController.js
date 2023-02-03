@@ -18,6 +18,10 @@ exports.posts_all_get = (req, res, next) => {
         if (err) {
             return next(err)
         }
+        posts.forEach(post => {
+            post.img = he.decode(post.img)
+        })
+
         res.json(posts)
     })
 }
@@ -40,8 +44,9 @@ exports.post_get = (req, res, next) => {
             err.status = 404;
             return next(err)
         }
-        
+
         results.post.text = he.decode(results.post.text)
+        results.post.img = he.decode(results.post.img)
 
         res.json({ post: results.post, comments: results.comments })
 

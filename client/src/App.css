@@ -46,7 +46,7 @@ table {
 input,
 textarea {
     -webkit-user-select: auto;
-    all: unset;
+    /* all: unset; */
 }
 
 /* revert the 'white-space' property for textarea elements on Safari */
@@ -913,7 +913,6 @@ footer {
     display: block;
     width: 95%;
     padding: 10px;
-
     border-radius: 5px;
     background-color: rgb(35, 42, 49) !important;
     border: none;
@@ -1049,4 +1048,108 @@ p.limit-word-count {
 .unPublishedContainer {
     border: 2px solid red;
     box-shadow: 0 0 10px red;
+}
+
+
+.comment-wrapper .delete-btn {
+    background-color: red;
+    padding: 0 10px;
+    border-radius: 0;
+    margin-bottom: 5px;
+}
+
+.crud-buttons button {
+    margin: 25px 0;
+    margin-left: 15px;
+}
+
+
+.comment-wrapper .delete-btn:hover {
+    background-color: rgb(173, 0, 0)
+}
+
+.crud-buttons .delete-btn {
+    background-color: red;
+}
+
+.crud-buttons .delete-btn:hover {
+    background-color: rgb(173, 0, 0)
+}
+
+.crud-buttons .publish-btn {
+    background-color: steelblue;
+}
+
+.crud-buttons .publish-btn:hover {
+    background-color: rgb(54, 100, 138);
+}
+
+
+.editor-wrapper {
+    background-color: #343a40;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.editor-inputs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.editor-inputs-container input {
+    display: block;
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background-color: rgb(35, 42, 49) !important;
+    border: none;
+    color: hsla(0, 0%, 98%, .9);
+    font-size: 1.2em;
+    transition: box-shadow 0.2s ease 0s;
+}
+
+.tox.tox-tinymce {
+    margin-bottom: 30px;
+}
+
+.content-container.editor {
+    max-width: 1500px
+}
+
+.editor-inputs-container button {
+    padding: 10px 45px;
+    color: white;
+    background-color: #20c997;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    transition: all 0.1s ease-in-out 0s;
+}
+
+.editor-inputs-container button:hover {
+    cursor: pointer;
+    background-color: #1ca97f;
+}
+
+.editor-inputs-container input:focus {
+    box-shadow: 0 0 10px steelblue;
+}
+
+.article-flex.admin-article img {
+    margin-bottom: 20px;
+}
+
+.publish-checkbox {
+    display: inline-block !important;
+    border: none;
+    width: 20px;
+    height: 20px;
+}
+
+.publish-checkbox:focus {
+    box-shadow: 0 0 0px !important;
 }

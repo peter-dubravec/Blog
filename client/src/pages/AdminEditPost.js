@@ -51,38 +51,40 @@ export default function CreatePost() {
 
 
     return (
-        <>
+        <div className="editor-wrapper">
+            <div className="content-container editor">
+                <Editor
+                    apiKey='jy5240yig30yyplfmeq7hpbarx4o8h6p23xy17ycfsn283px'
+                    onInit={(evt, editor) => editorRef.current = editor}
+                    initialValue={article && article.text}
+                    init={{
+                        height: 500,
+                        menubar: false,
+                        plugins: [
+                            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                        ],
+                        toolbar: 'undo redo | blocks | ' +
+                            'bold italic forecolor | alignleft aligncenter ' +
+                            'alignright alignjustify | bullist numlist outdent indent | ' +
+                            'removeformat | help',
+                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                    }}
+                />
+                <div className="editor-inputs-container">
+                    <label htmlFor="title">Title: </label>
+                    <input type="text" name="title" onChange={(e) => {
+                        setArticle({ ...article, title: e.target.value })
+                    }} value={article?.title}></input>
 
-            <Editor
-                apiKey='jy5240yig30yyplfmeq7hpbarx4o8h6p23xy17ycfsn283px'
-                onInit={(evt, editor) => editorRef.current = editor}
-                initialValue={article && article.text}
-                init={{
-                    height: 500,
-                    menubar: false,
-                    plugins: [
-                        'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                        'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                        'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
-                    ],
-                    toolbar: 'undo redo | blocks | ' +
-                        'bold italic forecolor | alignleft aligncenter ' +
-                        'alignright alignjustify | bullist numlist outdent indent | ' +
-                        'removeformat | help',
-                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-                }}
-            />
 
-            <label htmlFor="title">Title: </label>
-            <input type="text" name="title" onChange={(e) => {
-                setArticle({ ...article, title: e.target.value })
-            }} value={article?.title}></input>
+                    <label htmlFor="img">Image source: </label>
+                    <input type="text" name="img" id="img" onChange={(e) => setArticle({ ...article, img: e.target.value })} value={article?.img ? article.img : ""}></input>
 
-
-            <label htmlFor="img">Image source: </label>
-            <input type="text" name="img" id="img" onChange={(e) => setArticle({ ...article, img: e.target.value })} value={article?.img ? article.img : ""}></input>
-
-            <button onClick={log}>Update Post</button>
-        </>
+                    <button onClick={log}>Update Post</button>
+                </div>
+            </div>
+        </div>
     );
 }

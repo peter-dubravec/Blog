@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useNavigate } from "react-router-dom";
+import Moment from 'react-moment';
 
 const AdminGetPost = () => {
     const { id } = useParams()
@@ -74,25 +75,45 @@ const AdminGetPost = () => {
     }
 
     return (
-        <div>
-            <div className="article">
+
+        <div className="article-wrapper">
+            <div className="content-container article-flex admin-article">
                 <h1>{articles?.posts.title}</h1>
                 {articles?.posts.img && <img src={articles.posts.img} alt="image"></img>}
 
                 <div dangerouslySetInnerHTML={{ __html: articles?.posts.text }} />
-                <button onClick={() => deletePost(articles.posts._id)}>Delete</button>
-                {articles?.posts.isPublished ? (<button onClick={() => handlePublish(articles.posts._id, false)}>UnPublish</button>) : (<button onClick={() => handlePublish(articles.posts._id, true)}>Publish</button>)}
 
-                <Link to={`/admin/dashboard/${articles?.posts._id}/edit`}><button>Update</button></Link>
+                <div className="crud-buttons">
+                    <button className="delete-btn" onClick={() => deletePost(articles.posts._id)}>Delete</button>
+                    {articles?.posts.isPublished ? (<button className="publish-btn" onClick={() => handlePublish(articles.posts._id, false)}>UnPublish</button>) : (<button className="publish-btn" onClick={() => handlePublish(articles.posts._id, true)}>Publish</button>)}
+                    <Link to={`/admin/dashboard/${articles?.posts._id}/edit`}><button>Update</button></Link>
+                </div>
+
+                <div className="comment-wrapper">
+                    {articles?.comments.map(comment => (
+                        <div key={comment._id} className="comment">
+                            <div className="comment-heading"><p className="comment-author">Author: <span>{comment.author}</span></p>
+                                <button className='delete-btn' onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+                                <p><Moment format="HH:mm DD/MM/YYYY">{comment.createdAt}</Moment></p>
+                            </div>
+                            <div className="separator"></div>
+                            <div className="comment-text">
+                                <p>{comment.text}</p>
+                            </div>
+
+                        </div>
+                    ))}
+                </div>
             </div>
 
-            {articles?.comments.length ? (articles.comments.map(comment => (
-                <div key={comment._id} className="article">
-                    <p>{comment.text}</p>
-                    <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
-                </div>))) : (<div>Nobody commented this post</div>)}
         </div >
+
     )
 }
 
+{/* {articles?.comments.length ? (articles.comments.map(comment => (
+    <div key={comment._id} className="article">
+        <p>{comment.text}</p>
+        <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+    </div>))) : (<div>Nobody commented this post</div>)} */}
 export default AdminGetPost

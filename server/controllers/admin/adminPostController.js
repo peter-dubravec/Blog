@@ -63,6 +63,7 @@ exports.post_get = (req, res, next) => {
             return res.status(400).json(err.message)
         }
         results.posts.text = he.decode(results.posts.text)
+        results.posts.img = he.decode(results.posts.img)
         res.status(200).json(results)
     })
 }
@@ -74,7 +75,7 @@ exports.post_update_get = (req, res, next) => {
         }
 
         post.text = he.decode(post.text)
-        console.log(post.text)
+        post.img = he.decode(post.img)
         res.status(200).json(post)
     }
     )
