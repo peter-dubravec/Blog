@@ -18,7 +18,7 @@ const AboutMeSection = () => {
                             <li><p><strong>Email: </strong> <span>peter.dubravec98@gmail.com</span></p></li>
                             <li><p><strong>Age: </strong>25</p></li>
                             <li><p><strong>From: </strong>Banska Bystrica, Slovakia</p></li>
-                            <li><button className="cv-btn">Download CV</button></li>
+                            <li><a href="boats.html" download><button className="cv-btn">Download CV</button></a></li>
                         </ul>
                     </div>
                 </div>

@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 const BlogPost = () => {
     const { id } = useParams()
 
-    const [articles, setArticle] = useState(null)
+    const [article, setArticle] = useState(null)
 
     const [comment, setComment] = useState({ author: "", text: "", })
 
@@ -35,8 +35,9 @@ const BlogPost = () => {
             body: JSON.stringify(commentObj)
         })
 
+        const json = await response.json()
         if (response.ok) {
-            window.location.reload();
+            setArticle({ ...article, comments: [...article.comments, json] })
         }
     }
 
@@ -66,15 +67,15 @@ const BlogPost = () => {
         <div className="article-wrapper">
             <div className="content-container article-flex">
                 <div className="article">
-                    <h1>{articles?.post.title}</h1>
-                    {articles?.post.img && <img src={articles.post.img} alt="image"></img>}
+                    <h1>{article?.post.title}</h1>
+                    {article?.post.img && <img src={article.post.img} alt="image"></img>}
                     <br />
-                    <div dangerouslySetInnerHTML={{ __html: articles?.post.text }} />
+                    <div className="article-text" dangerouslySetInnerHTML={{ __html: article?.post.text }} />
 
                 </div>
 
                 <div className="comment-wrapper">
-                    {articles?.comments.map(comment => (
+                    {article?.comments.map(comment => (
                         <div key={comment._id} className="comment">
                             <div className="comment-heading"><p className="comment-author">Author: <span>{comment.author}</span></p>
                                 <p><Moment format="HH:mm DD/MM/YYYY">{comment.createdAt}</Moment></p>

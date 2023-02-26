@@ -12,7 +12,6 @@ export default function CreatePost() {
     const log = async () => {
         if (editorRef.current) {
             const myObj = { text: editorRef.current.getContent(), isPublished: publish, img, title }
-            console.log(editorRef.current.getContent());
             const response = await fetch("/api/admin/dashboard/create-post", {
                 method: 'POST',
                 headers: {

@@ -25,14 +25,11 @@ const PortfolioSection = () => {
         setClickedBtn(copiedObj)
     }
 
-    useEffect(() => {
-        console.log("ahoj")
-    }, [clickedBtn])
 
     return (
         <section className="portfolio-section" id="portfolioid">
             <div className="portfolio-container content-container">
-                <div className="section--heading"><h2>Recent Projects</h2>
+                <div className="section--heading"><h2>Projects</h2>
                     <p>Portfolio</p>
                     <span className="separator"></span>
                 </div>

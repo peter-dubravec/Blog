@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { FaFacebookF, FaLinkedin } from "react-icons/fa"
 import { Link, animateScroll as scroll } from "react-scroll";
+
 const SidePanel = () => {
     const location = useLocation()
 

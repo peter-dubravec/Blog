@@ -22,7 +22,6 @@ export default function CreatePost() {
             const json = await response.json()
 
             if (response.ok) {
-                console.log(json.posts)
                 setArticle({ title: json.title, text: json.text, img: json.img, isPublished: article.isPublished })
             }
         }
@@ -32,7 +31,6 @@ export default function CreatePost() {
     const editorRef = useRef(null);
     const log = async () => {
         if (editorRef.current) {
-            console.log(editorRef.current.getContent());
             const response = await fetch(`/api/admin/dashboard/${id}/update`, {
                 method: 'POST',
                 headers: {

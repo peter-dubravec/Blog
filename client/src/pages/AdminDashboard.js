@@ -17,8 +17,6 @@ const Admin = () => {
         logout()
     }
 
-
-
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch("/api/admin/dashboard", {

@@ -26,6 +26,8 @@ const AdminGetPost = () => {
         fetchArticle()
     }, [user, id])
 
+    console.log(articles?.posts)
+
     const deletePost = async (id) => {
         const response = await fetch(`/api/admin/dashboard/${id}/delete`, {
             method: 'POST',
@@ -53,7 +55,7 @@ const AdminGetPost = () => {
         })
 
         if (response.ok) {
-            window.location.reload(true)
+            setArticle({ ...articles, posts: { ...articles.posts, isPublished: !articles.posts.isPublished } })
         } else {
             alert("There was a problem while publishing the post.")
         }
@@ -66,9 +68,13 @@ const AdminGetPost = () => {
                 'Authorization': `Bearer ${user.token}`
             }
         })
+
+        const json = await response.json()
+        console.log(json)
         if (response.ok) {
-            alert("comment deleted")
-            window.location.reload(true)
+            const newComments = articles.comments.filter(comment => comment._id != id)
+            console.log(newComments)
+            setArticle({ ...articles, comments: newComments })
         } else {
             console.log("error")
         }
@@ -111,9 +117,5 @@ const AdminGetPost = () => {
     )
 }
 
-{/* {articles?.comments.length ? (articles.comments.map(comment => (
-    <div key={comment._id} className="article">
-        <p>{comment.text}</p>
-        <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
-    </div>))) : (<div>Nobody commented this post</div>)} */}
+
 export default AdminGetPost

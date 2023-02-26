@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <script>
+        const player1 = {
+            name: "Player 1",
+            boats: [
+                { x: 2, y: 4, size: 2, hits: 0 },
+                { x: 4, y: 2, size: 3, hits: 0 },
+                { x: 1, y: 8, size: 4, hits: 0 },
+                { x: 7, y: 9, size: 1, hits: 0 }
+            ],
+            shots: []
+        };
+
+        const player2 = {
+            name: "Player 2",
+            boats: [
+                { x: 9, y: 3, size: 2, hits: 0 },
+                { x: 5, y: 7, size: 3, hits: 0 },
+                { x: 0, y: 1, size: 4, hits: 0 },
+                { x: 8, y: 5, size: 1, hits: 0 }
+            ],
+            shots: []
+        };
+
+        let currentPlayer = player1;
+        let gameOver = false;
+
+        function playTurn(x, y) {
+            if (gameOver) {
+                console.log("Game is over. Start a new game to play again.");
+                return;
+            }
+
+            let targetPlayer = currentPlayer === player1 ? player2 : player1;
+            let boatHit = false;
+
+            for (const boat of targetPlayer.boats) {
+                if (boat.x === x && boat.y === y) {
+                    boat.hits++;
+                    currentPlayer.shots.push({ x, y });
+                    boatHit = true;
+
+                    if (boat.hits === boat.size) {
+                        console.log(`${currentPlayer.name} sunk ${targetPlayer.name}'s boat at (${x}, ${y})`);
+                    } else {
+                        console.log(`${currentPlayer.name} hit ${targetPlayer.name}'s boat at (${x}, ${y})`);
+                    }
+
+                    break;
+                }
+            }
+
+            if (!boatHit) {
+                console.log(`${currentPlayer.name} missed at (${x}, ${y})`);
+                currentPlayer.shots.push({ x, y });
+            }
+
+            let allBoatsSunk = true;
+            for (const boat of targetPlayer.boats) {
+                if (boat.hits < boat.size) {
+                    allBoatsSunk = false;
+                    break;
+                }
+            }
+
+            if (allBoatsSunk) {
+                console.log(`${currentPlayer.name} won the game!`);
+                gameOver = true;
+            } else {
+                currentPlayer = targetPlayer;
+                console.log(`${currentPlayer.name}'s turn`);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="playTurn(0, 0)">Shoot (0, 0)</button>
+    <button onclick="playTurn(1, 1)">Shoot (1, 1)</button>
+    <!-- add more buttons to represent more shots -->
+</body>

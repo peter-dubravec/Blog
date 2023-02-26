@@ -39,17 +39,17 @@ function App() {
 
               <Route
                 path="/login"
-                element={user ? <Navigate to="/admin/dashboard" /> : <Login />}
+                element={user ? <AdminDashboard /> : <Login />}
               />
 
-              <Route path="/admin/dashboard" element={user ? <AdminDashboard /> : <Navigate to="/login" />}
+              <Route path="/admin/dashboard" element={user ? <AdminDashboard /> : <Login />}
               />
 
-              <Route path="/admin/dashboard/:id" element={user ? <AdminGetPost /> : <Navigate to="/login" />} />
+              <Route path="/admin/dashboard/:id" element={user ? <AdminGetPost /> : <Login />} />
 
-              <Route path="/admin/dashboard/:id/edit" element={user ? <AdminEditPost /> : <Navigate to="/login" />} />
+              <Route path="/admin/dashboard/:id/edit" element={user ? <AdminEditPost /> : <Login />} />
 
-              <Route path="/admin/create-post" element={user ? <CreatePost /> : <Navigate to="/login" />} />
+              <Route path="/admin/create-post" element={user ? <CreatePost /> : <Login />} />
 
             </Routes>
           </div>
