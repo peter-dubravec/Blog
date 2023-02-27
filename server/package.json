@@ -11,9 +11,11 @@
   "dependencies": {
     "async": "^3.2.4",
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-validator": "^6.14.3",
+    "fs": "^0.0.1-security",
     "he": "^1.2.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.3",

@@ -20,6 +20,7 @@ exports.posts_all_get = (req, res, next) => {
         }
         posts.forEach(post => {
             post.img = he.decode(post.img)
+            post.text = he.decode(post.text)
         })
 
         res.json(posts)

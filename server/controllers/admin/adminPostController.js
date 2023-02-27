@@ -114,7 +114,6 @@ exports.post_update_post = [
     body("img", "Invalid img text").trim().escape(),
 
     async (req, res, next) => {
-        console.log(req.body)
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
             res.status(400).json({ error: "Invalid input" })
@@ -144,7 +143,7 @@ exports.login_post = [
         try {
             const admin = await Admins.findOne({ username: req.body.username })
             const isAuthorized = await bcrypt.compare(req.body.password, admin.password)
-
+            
             if (isAuthorized) {
                 const token = jwt.sign({ _id: admin._id }, process.env.SECRET_JWT)
                 res.json({ message: "logged in", token })

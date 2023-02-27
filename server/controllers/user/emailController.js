@@ -14,7 +14,6 @@ exports.send_email_post = [
         }
 
         const { name, emailFrom, message } = req.body
-        console.log(req.body)
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
