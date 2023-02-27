@@ -43,9 +43,9 @@ const PortfolioSection = () => {
                     {clickedBtn[0] &&
                         (<div data-key="0" className="project mern">
                             <ul>
+                                <li><a href="https://peter-dubravec.github.io/Odin-Book-Front-End/" target="_blank"><FaGithub />Odin Book</a></li>
                                 <li><a href="https://github.com/peter-dubravec/Members-Only" target="_blank"><FaGithub />Members Only</a></li>
                                 <li><a href="https://github.com/peter-dubravec/Inventory" target="_blank"><FaGithub />Inventory</a></li>
-                                <li><a href="https://github.com/peter-dubravec/Library" target="_blank"><FaGithub />Library</a></li>
                             </ul>
                         </div>)}
                     {clickedBtn[1] &&

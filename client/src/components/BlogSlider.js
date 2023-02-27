@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const BlogSlider = ({ posts }) => {
 
     const limitText = (text) => {
-        return text.length > 20 ? text.slice(0, 80) + "..." : text
+        return text.length > 80 ? text.slice(0, 80) + "..." : text
     }
 
     return (
@@ -15,7 +15,7 @@ const BlogSlider = ({ posts }) => {
                         <img src={post.img} alt={post.title} />
                         <div className="article-teaser">
                             <h2>{post.title}</h2>
-                            <p>{limitText(post.text)}</p>
+                            <div className="article-text" dangerouslySetInnerHTML={{ __html: limitText(post.text) }} />
                         </div>
                     </div>
                 </Link>

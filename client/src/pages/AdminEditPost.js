@@ -14,7 +14,7 @@ export default function CreatePost() {
 
     useEffect(() => {
         const fetchArticle = async () => {
-            const response = await fetch(`/api/admin/dashboard/${id}/without-comments`, {
+            const response = await fetch(`https://13.39.19.247:5050/api/admin/dashboard/${id}/without-comments`, {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
@@ -31,7 +31,7 @@ export default function CreatePost() {
     const editorRef = useRef(null);
     const log = async () => {
         if (editorRef.current) {
-            const response = await fetch(`/api/admin/dashboard/${id}/update`, {
+            const response = await fetch(`https://13.39.19.247:5050/api/admin/dashboard/${id}/update`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${user.token}`,

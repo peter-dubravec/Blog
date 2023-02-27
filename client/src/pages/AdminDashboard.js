@@ -19,7 +19,7 @@ const Admin = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch("/api/admin/dashboard", {
+            const response = await fetch("https://13.39.19.247:5050/api/admin/dashboard", {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }

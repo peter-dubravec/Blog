@@ -480,7 +480,6 @@ h1 {
 /* -------------------------------- */
 .whatido-section {
     background-color: #343a40;
-    padding: 20px;
 }
 
 .whatido-grid-container {
@@ -530,10 +529,12 @@ h1 {
 }
 
 .blog-section .posts {
-
-
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+.blog-section .posts a {
+    text-decoration: none;
 }
 
 .blogArticlev img {
@@ -625,6 +626,10 @@ h1 {
     position: relative;
     width: 100%;
     line-height: 2;
+}
+
+.projects-container li {
+    border-radius: 10px;
 }
 
 
@@ -754,14 +759,35 @@ h1 {
     background-color: #212529;
 }
 
+.resume-container .section--heading {
+    margin-bottom: 35px;
+}
+
 .resume-containers h2 {
     color: hsla(0, 0%, 98%, .9);
     margin-bottom: 10px;
 }
 
 .resume-containers {
-    display: flex;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    margin-bottom: 30px;
+}
+
+.resume-box.edu1 h2,
+.resume-box.exp1 h2 {
+    position: absolute;
+    top: -40px;
+}
+
+
+.resume-containers .edu2 {
+    grid-row: 2/3;
+}
+
+.resume-containers .edu3 {
+    grid-row: 3/4;
 }
 
 .resume-containers .date {
@@ -785,10 +811,12 @@ h1 {
 
 .resume-box {
     background-color: #111418;
-    margin-bottom: 20px;
     padding: 20px;
     border-radius: 10px;
+    position: relative;
 }
+
+
 
 
 
@@ -996,8 +1024,12 @@ footer {
     resize: vertical;
 }
 
-.article .article-text {
+.article-wrapper .article .article-text {
     padding: 0 40px;
+}
+
+.article-wrapper .article img {
+    margin-bottom: 40px;
 }
 
 .article-wrapper input:focus {
@@ -1368,7 +1400,7 @@ p.limit-word-count {
     }
 
     .content-container {
-        padding: 0 60px;
+        /* padding: 0 60px; */
     }
 
     .navbar {
@@ -1433,6 +1465,15 @@ p.limit-word-count {
 
     .resume-containers {
         display: block;
+        margin-bottom: 0px;
+    }
+
+    .resume-box {
+        margin-top: 30px;
+    }
+
+    .resume-box.exp1 {
+        margin-top: 80px;
     }
 
     .blogArticle {
@@ -1461,6 +1502,14 @@ p.limit-word-count {
         text-align: center;
     }
 
+    .navigation {
+        gap: 15px !important;
+    }
+
+    .whatido-section {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 @media (max-height:640px) {
@@ -1520,6 +1569,8 @@ p.limit-word-count {
 
     .navigation {
         gap: 5px !important;
+        flex-wrap: wrap;
+        line-height: 2;
     }
 
     .blogArticle {

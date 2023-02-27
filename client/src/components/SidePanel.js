@@ -73,8 +73,8 @@ const SidePanel = () => {
                         </li>
                     </ul>
                     <div className="links">
-                        <a href="https://www.facebook.com"><FaFacebookF /></a>
-                        <a href="facebook.com"> <FaLinkedin /></a>
+                        <a href="https://www.facebook.com/peter.dubravec.7/"><FaFacebookF /></a>
+                        <a href="https://www.linkedin.com/in/peter-d%C3%BAbravec-327376225/"> <FaLinkedin /></a>
 
                     </div>
                 </div> : ""

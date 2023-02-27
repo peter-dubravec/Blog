@@ -13,7 +13,7 @@ const BlogPost = () => {
 
     useEffect(() => {
         const fetchArticle = async () => {
-            const response = await fetch(`/api/user/posts/${id}`)
+            const response = await fetch(`https://13.39.19.247:5050/api/user/posts/${id}`)
             const json = await response.json()
             if (response.ok) {
                 setArticle(json)
@@ -27,7 +27,7 @@ const BlogPost = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const commentObj = { ...comment, commentedPost: id }
-        const response = await fetch(`/api/user/posts/${id}`, {
+        const response = await fetch(`https://13.39.19.247:5050/api/user/posts/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

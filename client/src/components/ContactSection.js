@@ -8,7 +8,7 @@ const ContactSection = () => {
     const handleSubmit = async (e) => {
         setLoading(true)
         e.preventDefault()
-        const response = await fetch("/api/user/sendmail", {
+        const response = await fetch("https://13.39.19.247:5050/api/user/sendmail", {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -49,8 +49,8 @@ const ContactSection = () => {
                         <div className="follow-container">
                             <p className="follow">FOLLOW ME!</p>
                             <div className="links">
-                                <a href="https://www.facebook.com"><FaFacebookF /></a>
-                                <a href="https://www.facebook.com"><FaLinkedin /></a>
+                                <a href="https://www.facebook.com/peter.dubravec.7/"><FaFacebookF /></a>
+                                <a href="https://www.linkedin.com/in/peter-d%C3%BAbravec-327376225/"><FaLinkedin /></a>
 
 
                             </div>
