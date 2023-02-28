@@ -12,7 +12,7 @@ export default function CreatePost() {
     const log = async () => {
         if (editorRef.current) {
             const myObj = { text: editorRef.current.getContent(), isPublished: publish, img, title }
-            const response = await fetch("http://35.180.74.202/api/admin/dashboard/create-post", {
+            const response = await fetch("https://35.180.74.202/api/admin/dashboard/create-post", {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${user.token}`,

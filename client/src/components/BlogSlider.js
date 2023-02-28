@@ -10,8 +10,8 @@ const BlogSlider = ({ posts }) => {
     return (
         <>
             {posts && posts.map((post) => (
-                <Link to={`/article/${post._id}`}>
-                    <div key={post._id} className="blogArticle">
+                <Link key={post._id} to={`/article/${post._id}`}>
+                    <div className="blogArticle">
                         <img src={post.img} alt={post.title} />
                         <div className="article-teaser">
                             <h2>{post.title}</h2>

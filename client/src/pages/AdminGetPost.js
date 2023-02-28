@@ -12,7 +12,7 @@ const AdminGetPost = () => {
 
     useEffect(() => {
         const fetchArticle = async () => {
-            const response = await fetch(`http://35.180.74.202/api/admin/dashboard/${id}`, {
+            const response = await fetch(`https://35.180.74.202/api/admin/dashboard/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
@@ -29,7 +29,7 @@ const AdminGetPost = () => {
     console.log(articles?.posts)
 
     const deletePost = async (id) => {
-        const response = await fetch(`http://35.180.74.202/api/admin/dashboard/${id}/delete`, {
+        const response = await fetch(`https://35.180.74.202/api/admin/dashboard/${id}/delete`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${user.token}`
@@ -45,7 +45,7 @@ const AdminGetPost = () => {
     }
 
     const handlePublish = async (id, action) => {
-        const response = await fetch(`http://35.180.74.202/api/admin/dashboard/${id}/publish`, {
+        const response = await fetch(`https://35.180.74.202/api/admin/dashboard/${id}/publish`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${user.token}`,
@@ -62,7 +62,7 @@ const AdminGetPost = () => {
     }
 
     const handleDeleteComment = async (id) => {
-        const response = await fetch(`http://35.180.74.202/api/admin/dashboard/comment/${id}/delete`, {
+        const response = await fetch(`https://35.180.74.202/api/admin/dashboard/comment/${id}/delete`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${user.token}`

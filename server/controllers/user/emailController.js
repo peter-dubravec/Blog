@@ -30,8 +30,7 @@ exports.send_email_post = [
             text: message
         };
 
-        console.log(process.env.EMAIL_PASSWORD)
-        console.log(process.env.MY_EMAIL)
+        
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 console.log(error)
