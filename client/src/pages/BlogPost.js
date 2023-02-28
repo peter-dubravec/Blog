@@ -38,6 +38,7 @@ const BlogPost = () => {
         const json = await response.json()
         if (response.ok) {
             setArticle({ ...article, comments: [...article.comments, json] })
+            setComment({ author: "", text: "" })
         }
     }
 

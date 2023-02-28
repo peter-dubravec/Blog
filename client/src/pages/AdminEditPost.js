@@ -52,7 +52,7 @@ export default function CreatePost() {
         <div className="editor-wrapper">
             <div className="content-container editor">
                 <Editor
-                    apiKey='jy5240yig30yyplfmeq7hpbarx4o8h6p23xy17ycfsn283px'
+                    apiKey='cxqydgn61ue6kefr5nhc2ujv9sp9x3bi98392aqehd8g4rpv'
                     onInit={(evt, editor) => editorRef.current = editor}
                     initialValue={article && article.text}
                     init={{
