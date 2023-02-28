@@ -1528,6 +1528,10 @@ p.limit-word-count {
         transform: translateY(-20px);
     }
 
+    .home-wrapper h2 {
+        font-size: 4em;
+    }
+
     .section--heading h2 {
         font-size: 2em;
     }
