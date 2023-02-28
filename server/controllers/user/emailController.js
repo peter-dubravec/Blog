@@ -5,11 +5,12 @@ const nodemailer = require('nodemailer');
 exports.send_email_post = [
     body("name", "Invalid Name").trim().escape().isLength({ min: 1, max: 100 }),
     body("emailFrom", "Invalid Email").isEmail().trim().escape().isLength({ max: 50 }),
-    body("message", "Invalid Message").trim().escape().isLength({ min: 1000 }),
+    body("message", "Invalid Message").trim().escape().isLength({ min: 1 }),
     (req, res) => {
         const errors = validationResult(req)
 
         if (!errors.isEmpty()) {
+            console.log(errors)
             return res.status(400).json({ error: errors.array() })
         }
 
@@ -29,6 +30,8 @@ exports.send_email_post = [
             text: message
         };
 
+        console.log(process.env.EMAIL_PASSWORD)
+        console.log(process.env.MY_EMAIL)
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 console.log(error)

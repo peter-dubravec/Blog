@@ -6,7 +6,7 @@ const BlogPostsSection = () => {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const response = await fetch('http://35.180.74.202:5000/api/user/posts')
+            const response = await fetch('http://35.180.74.202/api/user/posts')
             const json = await response.json()
 
             if (response.ok) {
