@@ -9,6 +9,8 @@ const path = require("path")
 const https = require("https")
 
 const cors = require('cors')
+
+console.log("is heere")
 app.use(cors({
     origin: ['http://localhost:3000'],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",

@@ -13,7 +13,7 @@ const BlogPost = () => {
 
     useEffect(() => {
         const fetchArticle = async () => {
-            const response = await fetch(`https://35.180.74.202/api/user/posts/${id}`)
+            const response = await fetch(`https://peter-dubravec.website/api/user/posts/${id}`)
             const json = await response.json()
             if (response.ok) {
                 setArticle(json)
@@ -27,7 +27,7 @@ const BlogPost = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const commentObj = { ...comment, commentedPost: id }
-        const response = await fetch(`https://35.180.74.202/api/user/posts/${id}`, {
+        const response = await fetch(`https://peter-dubravec.website/api/user/posts/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

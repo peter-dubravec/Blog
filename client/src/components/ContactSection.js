@@ -8,7 +8,7 @@ const ContactSection = () => {
     const handleSubmit = async (e) => {
         setLoading(true)
         e.preventDefault()
-        const response = await fetch("https://35.180.74.202/api/user/sendmail", {
+        const response = await fetch("https://peter-dubravec.website/api/user/sendmail", {
             headers: {
                 'Content-Type': 'application/json',
             },

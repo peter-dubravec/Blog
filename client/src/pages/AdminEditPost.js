@@ -14,7 +14,7 @@ export default function CreatePost() {
 
     useEffect(() => {
         const fetchArticle = async () => {
-            const response = await fetch(`https://35.180.74.202/api/admin/dashboard/${id}/without-comments`, {
+            const response = await fetch(`https://peter-dubravec.website/api/admin/dashboard/${id}/without-comments`, {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
@@ -31,7 +31,7 @@ export default function CreatePost() {
     const editorRef = useRef(null);
     const log = async () => {
         if (editorRef.current) {
-            const response = await fetch(`https://35.180.74.202/api/admin/dashboard/${id}/update`, {
+            const response = await fetch(`https://peter-dubravec.website/api/admin/dashboard/${id}/update`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${user.token}`,
