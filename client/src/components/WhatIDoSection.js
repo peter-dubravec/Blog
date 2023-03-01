@@ -44,7 +44,7 @@ const WhatIDoSection = () => {
             <div className="icon"><FaBullhorn /></div>
             <div>
               <h2 className="whatido-service-heading">SEO</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur dolor incidunt ipsam aut tempore, fugit corrupti saepe. Beatae magnam rem doloribus placeat et, impedit sunt eius alias repellendus. A, explicabo?</p>
+              <p>With my knowledge of search engine algorithms and best practices, I can optimize your website's content, structure, and backlinks to improve your search engine rankings and drive more traffic to your site.</p>
             </div>
           </div>
           <div className="whatido-flex-container">
